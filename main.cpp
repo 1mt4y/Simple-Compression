@@ -23,13 +23,13 @@ void Compress(std::string& inputFileName, std::string& outputFileName)
         std::streampos size;
         // because we used std::ios::ate as mode parameter, it sets the initial position (get) at the end of the file
         size = input.tellg();
-        std::cout << "original size is: " << (u_int64_t)size << " bytes.\n";
+        std::cout << "original size is: " << (int64_t)size << " bytes.\n";
 
         // keep reading same character until it changes, then write the character then its count
         unsigned char previous,current, count = 1;
         input.seekg(0);
         previous = input.get();
-        for (u_int64_t i = 1; i <= size; i++)
+        for (int64_t i = 1; i <= size; i++)
         {
             input.seekg(i);
             current = input.get();
@@ -70,10 +70,10 @@ void Decompress(std::string& inputFileName, std::string& outputFileName)
     else
     {
         unsigned char byte, count;
-        u_int64_t size = compressed.tellg();
+        int64_t size = compressed.tellg();
 
         std::cout << "compressed size is: " << (u_int64_t)size << " bytes.\n";
-        for (u_int64_t i = 0; i < size; i += 2) {
+        for (int64_t i = 0; i < size; i += 2) {
             compressed.seekg(i);
             byte = compressed.get();
             compressed.seekg(i + 1);
@@ -101,8 +101,8 @@ static void show_usage()
 }
 int main(int argc, char* argv[])
 {
-    if (argc != 4 || ((std::string)argv[1] != "-c" && (std::string)argv[1] != "--decompress" &&
-                      (std::string)argv[1] != "-d") && (std::string)argv[1] != "--decompress" ||
+    if (argc != 4 || (((std::string)argv[1] != "-c" && (std::string)argv[1] != "--decompress" &&
+                      (std::string)argv[1] != "-d") && (std::string)argv[1] != "--decompress") ||
                       (std::string)argv[1] == "-h" || (std::string)argv[1] == "--help")
     {
         show_usage();
