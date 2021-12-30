@@ -1,5 +1,5 @@
 # Simple Compression
-Simple compression algorithm written in c++
+Simple compression is a lossless compression algorithm written in c++
 
 It works by grouping repeated bytes into byte * number of times it was repeated.
 
