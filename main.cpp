@@ -20,7 +20,7 @@ void Compress(std::string& inputFileName, std::string& outputFileName)
     }
     else
     {
-        std::streampos size; //TODO: is there a real difference if i use std::streampos?
+        std::streampos size;
         // because we used std::ios::ate as mode parameter, it sets the initial position (get) at the end of the file
         size = input.tellg();
         std::cout << "original size is: " << (u_int64_t)size << " bytes.\n";
@@ -101,7 +101,6 @@ static void show_usage()
 }
 int main(int argc, char* argv[])
 {
-    //TODO: another method is find sequences of more than 1 byte
     if (argc != 4 || ((std::string)argv[1] != "-c" && (std::string)argv[1] != "--decompress" &&
                       (std::string)argv[1] != "-d") && (std::string)argv[1] != "--decompress" ||
                       (std::string)argv[1] == "-h" || (std::string)argv[1] == "--help")
